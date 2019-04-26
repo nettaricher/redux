@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Image, Text } from 'react-native'
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
-import NavigationService from '../../NavigationService';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   item: {
@@ -12,15 +11,16 @@ const styles = StyleSheet.create({
 })
 
 const ImageItem = (previewURL, largeImageURL) => {
+  setFullScreen = () => {
+    console.log("hi")
+  }
   return (
-    <TouchableWithoutFeedback onPress={() => NavigationService.navigate('FullScreen', {
-      largeImageURL: largeImageURL
-    })}>
+    <TouchableOpacity onPress={this.setFullScreen}>
       <Image
         style={styles.item}
         source={{ uri: `${previewURL.previewURL}` }}
       />
-    </TouchableWithoutFeedback>
+    </TouchableOpacity>
   )
 }
 

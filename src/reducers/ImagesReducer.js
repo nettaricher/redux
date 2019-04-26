@@ -1,4 +1,4 @@
-import { FETCH_IMAGES } from '../actions/ActionTypes'
+import { FETCH_IMAGES, DISPLAY_FULL_SIZE } from '../actions/ActionTypes'
 
 const initialState = {
   images: []
@@ -10,6 +10,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         images: action.payload
+      }
+    case DISPLAY_FULL_SIZE:
+      return {
+        ...state,
+        fullSizeURL: action.payload
       }
     default:
       return state
