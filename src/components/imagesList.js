@@ -47,7 +47,7 @@ export class ImagesList extends Component {
     this.props.fetchData(this.state.search)
   }
   eachImage(item, key) {
-    return <ImageItem key={key} previewURL={item.previewURL} />
+    return <ImageItem key={key} previewURL={item.previewURL} largeImageURL={item.largeImageURL} />
   }
   render() {
     const { search } = this.state;

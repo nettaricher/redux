@@ -1,24 +1,25 @@
 import React from 'react'
 import { StyleSheet, Image, Text } from 'react-native'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
-  itemWrapper: {
-    borderWidth: 1
-  },
   item: {
-    padding: 10,
-    fontSize: 18,
-    height: 44,
-    color: 'black'
+    width: 100,
+    height: 100,
+    margin: 8
   }
 })
 
-const ImageItem = previewURL => {
+const ImageItem = (previewURL, largeImageURL) => {
   return (
-    <Image
-      style={{ width: 100, height: 100, margin: 8 }}
-      source={{ uri: `${previewURL.previewURL}` }}
-    />
+    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('FullScreen', {
+      largeImageURL: largeImageURL
+    })}>
+      <Image
+        style={styles.item}
+        source={{ uri: `${previewURL.previewURL}` }}
+      />
+    </TouchableWithoutFeedback>
   )
 }
 
