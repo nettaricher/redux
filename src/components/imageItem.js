@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Image, Text } from 'react-native'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import NavigationService from '../../NavigationService';
 
 const styles = StyleSheet.create({
   item: {
@@ -12,7 +13,7 @@ const styles = StyleSheet.create({
 
 const ImageItem = (previewURL, largeImageURL) => {
   return (
-    <TouchableWithoutFeedback onPress={() => this.props.navigation.navigate('FullScreen', {
+    <TouchableWithoutFeedback onPress={() => NavigationService.navigate('FullScreen', {
       largeImageURL: largeImageURL
     })}>
       <Image
