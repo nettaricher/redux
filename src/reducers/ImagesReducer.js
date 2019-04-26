@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case FETCH_IMAGES:
       return {
         ...state,
-        images: action.data
+        images: action.payload
       }
     default:
       return state

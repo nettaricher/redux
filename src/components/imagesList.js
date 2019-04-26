@@ -17,24 +17,31 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ images }) => {
   return {
-    images: images
+    images: images.images
   }
 }
 
 export class ImagesList extends Component {
-  state = {
-    addTodoText: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+    this.eachImage = this.eachImage.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchData()
   }
 
+  eachImage(item, key) {
+    return <Text key={key}>{item.largeImageURL}</Text>;
+  }
   render() {
     const {
       images
     } = this.props
-
+    console.log(images)
     return (
       <View>
         <Button title={'Add Item'} />
@@ -44,13 +51,9 @@ export class ImagesList extends Component {
             placeholder="Type here to translate!"
           />
         </View>
-        <FlatList
-          style={styles.list}
-          data={images}
-          renderItem={({ image }) => (
-            <Text>{console.log("123")}</Text>
-          )}
-        />
+        <View>
+          {images.map(this.eachImage)}
+        </View>
       </View>
     )
   }
