@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
 })
 
 const ImageItem = previewURL => {
-  console.log(previewURL.previewURL)
   return (
     <Image
       style={{ width: 100, height: 100, margin: 8 }}

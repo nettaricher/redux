@@ -34,6 +34,7 @@ export class ImagesList extends Component {
     };
     this.eachImage = this.eachImage.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
+    this.submitEditing = this.submitEditing.bind(this);
   }
 
   componentDidMount() {
@@ -42,6 +43,9 @@ export class ImagesList extends Component {
   updateSearch = search => {
     this.setState({ search });
   };
+  submitEditing() {
+    this.props.fetchData(this.state.search)
+  }
   eachImage(item, key) {
     return <ImageItem key={key} previewURL={item.previewURL} />
   }
@@ -54,6 +58,7 @@ export class ImagesList extends Component {
           <SearchBar
             placeholder="Type Here..."
             onChangeText={this.updateSearch}
+            onSubmitEditing={this.submitEditing}
             value={search}
           />
         </View>
