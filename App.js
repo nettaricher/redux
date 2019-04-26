@@ -31,7 +31,7 @@ export default class App extends Component {
         <SafeAreaView style={styles.safeAreaTop} />
         <SafeAreaView style={styles.safeAreaBottom}>
           <View style={styles.container}>
-            <Text style={styles.header}>Album</Text>
+            <Text style={styles.header}>iPhotos</Text>
             <ImagesList />
           </View>
         </SafeAreaView>

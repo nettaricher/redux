@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
 })
 
 const ImageItem = previewURL => {
-  console.log(previewURL)
+  console.log(previewURL.previewURL)
   return (
     <Image
-      style={{ width: 50, height: 50 }}
-      source={{ uri: `${previewURL}` }}
+      style={{ width: 100, height: 100, margin: 8 }}
+      source={{ uri: `${previewURL.previewURL}` }}
     />
   )
 }
