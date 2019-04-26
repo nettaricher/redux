@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 //import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { StyleSheet, View, Text, Button, FlatList, TextInput } from 'react-native'
-// import TodoListItem from './ListItem'
+import ImageItem from './imageItem'
 import { fetchData } from '../actions/Actions'
 
 const styles = StyleSheet.create({
@@ -35,7 +35,7 @@ export class ImagesList extends Component {
   }
 
   eachImage(item, key) {
-    return <Text key={key}>{item.largeImageURL}</Text>;
+    return <ImageItem key={key} previewURL={item.previewURL} />
   }
   render() {
     const {
