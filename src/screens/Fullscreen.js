@@ -14,6 +14,10 @@ var styles = StyleSheet.create({
         width: "100%",
         height: "80%"
     },
+    like: {
+        width: 50,
+        height: 50,
+    }
 });
 
 const mapStateToProps = ({ images }) => {
@@ -33,6 +37,10 @@ const FullScreen = (props) => {
                 source={{ uri: `${props.fullSize}` }}
                 style={styles.canvas}
                 PlaceholderContent={<ActivityIndicator />}
+            />
+            <Image
+                source={require('../../images/emptyLike.png')}
+                style={styles.like}
             />
             <Button
                 onPress={this.handleReturn}
