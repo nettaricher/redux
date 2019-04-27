@@ -4,6 +4,7 @@ import { StyleSheet, View, Text, Button, ScrollView, TextInput } from 'react-nat
 import { SearchBar } from 'react-native-elements';
 import ImageItem from './imageItem'
 import { fetchData } from '../actions/Actions'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const styles = StyleSheet.create({
   list: {
@@ -16,6 +17,20 @@ const styles = StyleSheet.create({
     height: 44,
     borderWidth: 1
   },
+  navBar: {
+    flexDirection: "row",
+    justifyContent: "center"
+  },
+  navButton: {
+    margin: 5,
+    paddingTop: 3,
+    paddingBottom: 3,
+    paddingLeft: 13,
+    paddingRight: 13,
+    fontSize: 20,
+    backgroundColor: "#E3E5E7",
+    justifyContent: "center"
+  }
 
 })
 
@@ -60,6 +75,18 @@ export class ImagesList extends Component {
             onSubmitEditing={this.submitEditing}
             value={search}
           />
+        </View>
+        <View style={styles.navBar}>
+          <TouchableOpacity>
+            <Text style={styles.navButton}>
+              Grid View
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.navButton}>
+              List View
+            </Text>
+          </TouchableOpacity>
         </View>
         <ScrollView>
           <View style={styles.list}>
