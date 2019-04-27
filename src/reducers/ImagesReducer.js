@@ -1,4 +1,4 @@
-import { FETCH_IMAGES, DISPLAY_FULL_SIZE, CLEAN_FULL_SIZE } from '../actions/ActionTypes'
+import { FETCH_IMAGES, DISPLAY_FULL_SIZE, CLEAN_FULL_SIZE, ASYNC_TO_STATE } from '../actions/ActionTypes'
 
 const initialState = {
   images: []

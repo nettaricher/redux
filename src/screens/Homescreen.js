@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { StyleSheet, SafeAreaView, Text, View } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, View, Button } from 'react-native'
 import ImagesList from '../components/imagesList'
 import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
