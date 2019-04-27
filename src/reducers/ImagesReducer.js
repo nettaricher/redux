@@ -1,7 +1,8 @@
 import { FETCH_IMAGES, DISPLAY_FULL_SIZE, CLEAN_FULL_SIZE, ASYNC_TO_STATE } from '../actions/ActionTypes'
 
 const initialState = {
-  images: []
+  images: [],
+  favorites: []
 }
 
 export default (state = initialState, action) => {
@@ -26,7 +27,7 @@ export default (state = initialState, action) => {
     case ASYNC_TO_STATE:
       return {
         ...state,
-        favorites: action.payload
+        favorites: state.favorites.concat(action.payload)
       }
     default:
       return state

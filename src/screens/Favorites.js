@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react'
-import { StyleSheet, SafeAreaView, Text, View, ScrollView } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, View, ScrollView, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { asyncStorageToState } from '../actions/Actions'
+import ImageItem from '../components/imageItem'
 
 const cyanColor = 'rgb(97, 149, 200)'
 const styles = StyleSheet.create({
@@ -22,6 +23,12 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 36,
         textAlign: 'center'
+    },
+    gridView: {
+        flex: 1,
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "center"
     }
 })
 
@@ -39,13 +46,15 @@ class Favorites extends Component {
             images: []
         }
         this.eachImage = this.eachImage.bind(this)
+        this.switchToHome = this.switchToHome.bind(this)
     }
 
     componentDidMount() {
-        console.log("hihihihihi")
         this.props.asyncStorageToState()
     }
-
+    switchToHome() {
+        this.props.navigation.navigate("HomeScreen")
+    }
     eachImage(item, key) {
         return <ImageItem key={key} previewURL={item.preview} largeImageURL={item.fullsize} />
     }
@@ -53,7 +62,7 @@ class Favorites extends Component {
         console.log(this.props)
         const { fullSize, favorites } = this.props
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
-            console.log("navigate to full")
+            console.log("navigate to full screen...")
             this.props.navigation.navigate("FullScreen");
         }
 
@@ -65,10 +74,16 @@ class Favorites extends Component {
                         <Text style={styles.header}>Favorites</Text>
                         <ScrollView>
                             <View style={styles.gridView}>
-                                {console.log(favorites)}
+                                {favorites.map(this.eachImage)}
                             </View>
                         </ScrollView>
                     </View>
+                    <Button
+                        onPress={this.switchToHome}
+                        title="Go Back"
+                        color="#841584"
+                        accessibilityLabel="Return to home page"
+                    />
                 </SafeAreaView>
             </Fragment>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Button } from 'react-native'
+import { StyleSheet, View, Button, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 import { ActivityIndicator } from 'react-native';
 import { Image } from 'react-native-elements';
@@ -9,13 +9,14 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 var styles = StyleSheet.create({
     container: {
-        flex: 1,
         justifyContent: 'center',
     },
-    canvas: {
-        width: "100%",
-        height: "78%",
-        marginTop: "10%"
+    fullImage: {
+        width: Dimensions.get('window').width,
+        height: '70%',
+        marginTop: "10%",
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     like: {
         width: 60,
@@ -24,7 +25,6 @@ var styles = StyleSheet.create({
 });
 
 const mapStateToProps = ({ images }) => {
-    console.log(images.fullSizeURL)
     return {
         fullSize: images.fullSizeURL,
         preview: images.previewURL
@@ -50,11 +50,11 @@ const FullScreen = (props) => {
             })
 
             await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
-            console.log("######LIKED#######")
+            console.log("++++++LIKED++++++")
             this.handleReturn()
 
         } catch (e) {
-            // saving error
+            console.log("Fullscreen - storeFavoriteImage > " + e)
         }
     }
     return (
@@ -62,11 +62,11 @@ const FullScreen = (props) => {
             <View>
                 <Image
                     source={{ uri: `${props.fullSize}` }}
-                    style={styles.canvas}
+                    style={styles.fullImage}
                     PlaceholderContent={<ActivityIndicator />}
                 />
             </View>
-            <View style={{ alignItems: 'center' }}>
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
                 <TouchableOpacity onPress={this.storeFavoriteImage}>
                     <Image
                         source={require('../../images/emptyLike.png')}
