@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { StyleSheet, SafeAreaView, Text, View } from 'react-native'
-import AsyncStorage from '@react-native-community/async-storage';
+import { StyleSheet, SafeAreaView, Text, View, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import { asyncStorageToState } from '../actions/Actions'
 
@@ -26,10 +25,10 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = ({ favorites, images }) => {
+const mapStateToProps = ({ images }) => {
     return {
-        favorites: favorites,
-        fullSize: images.fullSizeURL
+        favorites: images.favorites,
+        fullSize: images.fullSize
     }
 }
 
@@ -42,14 +41,17 @@ class Favorites extends Component {
         this.eachImage = this.eachImage.bind(this)
     }
 
-    componentDidMount() { }
+    componentDidMount() {
+        console.log("hihihihihi")
+        this.props.asyncStorageToState()
+    }
 
     eachImage(item, key) {
-        return <ImageItem key={key} previewURL={item.previewURL} largeImageURL={item.largeImageURL} />
+        return <ImageItem key={key} previewURL={item.preview} largeImageURL={item.fullsize} />
     }
     render() {
-        const { fullSize, navigation } = this.props
-        console.log("favorites --- " + favorites)
+        console.log(this.props)
+        const { fullSize, favorites } = this.props
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
             console.log("navigate to full")
             this.props.navigation.navigate("FullScreen");
@@ -63,7 +65,7 @@ class Favorites extends Component {
                         <Text style={styles.header}>Favorites</Text>
                         <ScrollView>
                             <View style={styles.gridView}>
-                                {images.map(this.eachImage)}
+                                {console.log(favorites)}
                             </View>
                         </ScrollView>
                     </View>

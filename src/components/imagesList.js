@@ -102,7 +102,7 @@ export class ImagesList extends Component {
   }
   render() {
     const { search } = this.state;
-    const { images } = this.props
+    const { images } = this.props;
     return (
       <View>
         <View>

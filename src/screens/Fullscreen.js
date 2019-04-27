@@ -38,10 +38,12 @@ const FullScreen = (props) => {
     }
     storeFavoriteImage = async () => {
         try {
-            console.log("######LIKED#######")
             const prevState = await AsyncStorage.getItem('favorites')
-            console.log(prevState)
-            let nextState = JSON.parse(prevState)
+            let nextState
+            if (!prevState)
+                nextState = []
+            else
+                nextState = JSON.parse(prevState)
             nextState.push({
                 fullsize: props.fullSize,
                 preview: props.preview

@@ -32,8 +32,17 @@ const mapStateToProps = ({ images }) => {
     }
 }
 
+
 class HomeScreen extends Component {
+    // storeData = async () => {
+    //     try {
+    //         await AsyncStorage.setItem('favorites', '')
+    //     } catch (e) {
+    //         // saving error
+    //     }
+    // }
     render() {
+        //this.storeData()
         const { fullSize, navigation } = this.props
         console.log("homescreen --- " + fullSize)
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
