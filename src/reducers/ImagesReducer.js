@@ -14,12 +14,14 @@ export default (state = initialState, action) => {
     case DISPLAY_FULL_SIZE:
       return {
         ...state,
-        fullSizeURL: action.payload
+        fullSizeURL: action.payload.fullsize,
+        previewURL: action.payload.preview
       }
     case CLEAN_FULL_SIZE:
       return {
         ...state,
-        fullSizeURL: null
+        fullSizeURL: null,
+        previewURL: null
       }
     default:
       return state

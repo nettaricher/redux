@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Image, Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { connect } from 'react-redux'
-import { storeFullSizeURL } from '../actions/Actions'
+import { storeURL } from '../actions/Actions'
 
 const styles = StyleSheet.create({
   item: {
@@ -20,7 +20,7 @@ class ImageItem extends Component {
 
   setFullScreen() {
     console.log("setFullScreen = " + this.props.largeImageURL)
-    this.props.storeFullSizeURL(this.props.largeImageURL)
+    this.props.storeURL(this.props.previewURL, this.props.largeImageURL)
   }
 
   render() {
@@ -37,5 +37,5 @@ class ImageItem extends Component {
 
 export default connect(
   null,
-  { storeFullSizeURL }
+  { storeURL }
 )(ImageItem)

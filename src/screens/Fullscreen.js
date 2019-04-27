@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { ActivityIndicator } from 'react-native';
 import { Image } from 'react-native-elements';
 import { cleanFullSizeURL } from '../actions/Actions'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
 
 var styles = StyleSheet.create({
     container: {
@@ -12,17 +14,20 @@ var styles = StyleSheet.create({
     },
     canvas: {
         width: "100%",
-        height: "80%"
+        height: "78%",
+        marginTop: "10%"
     },
     like: {
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
     }
 });
 
 const mapStateToProps = ({ images }) => {
+    console.log(images.fullSizeURL)
     return {
-        fullSize: images.fullSizeURL
+        fullSize: images.fullSizeURL,
+        preview: images.previewURL
     }
 }
 
@@ -31,23 +36,37 @@ const FullScreen = (props) => {
         props.cleanFullSizeURL();
         props.navigation.navigate("HomeScreen");
     }
+    storeFavoriteImage = async () => {
+        // const { preview, fullSize } = this.props
+        try {
+            await AsyncStorage.setItem('test', 'stored value')
+        } catch (e) {
+            // saving error
+        }
+    }
     return (
-        <View style={styles.container}>
-            <Image
-                source={{ uri: `${props.fullSize}` }}
-                style={styles.canvas}
-                PlaceholderContent={<ActivityIndicator />}
-            />
-            <Image
-                source={require('../../images/emptyLike.png')}
-                style={styles.like}
-            />
-            <Button
-                onPress={this.handleReturn}
-                title="Go Back"
-                color="#841584"
-                accessibilityLabel="Return to home page"
-            />
+        <View>
+            <View>
+                <Image
+                    source={{ uri: `${props.fullSize}` }}
+                    style={styles.canvas}
+                    PlaceholderContent={<ActivityIndicator />}
+                />
+            </View>
+            <View style={{ alignItems: 'center' }}>
+                <TouchableOpacity onPress={this.storeFavoriteImage}>
+                    <Image
+                        source={require('../../images/emptyLike.png')}
+                        style={styles.like}
+                    />
+                </TouchableOpacity>
+                <Button
+                    onPress={this.handleReturn}
+                    title="Go Back"
+                    color="#841584"
+                    accessibilityLabel="Return to home page"
+                />
+            </View>
         </View>
     )
 }

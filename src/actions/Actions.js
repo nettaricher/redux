@@ -13,11 +13,14 @@ export const fetchData = query => dispatch => {
     })
 }
 
-export const storeFullSizeURL = url => dispatch => {
-  console.log("storeFullSizeURL action url = " + url)
+export const storeURL = (prevURL, fullURL) => dispatch => {
+  console.log("storeFullSizeURL action url = " + prevURL)
   dispatch({
     type: DISPLAY_FULL_SIZE,
-    payload: url
+    payload: {
+      preview: prevURL,
+      fullsize: fullURL
+    }
   })
 }
 

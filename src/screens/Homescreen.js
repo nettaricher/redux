@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { StyleSheet, SafeAreaView, Text, View } from 'react-native'
 import ImagesList from '../components/imagesList'
 import { connect } from 'react-redux'
+import AsyncStorage from '@react-native-community/async-storage';
 
 const cyanColor = 'rgb(97, 149, 200)'
 const styles = StyleSheet.create({
@@ -30,8 +31,19 @@ const mapStateToProps = ({ images }) => {
         fullSize: images.fullSizeURL
     }
 }
+const _retrieveData = async () => {
+    try {
+        const value = await AsyncStorage.getItem('test')
+        if (value !== null) {
+            console.log(value)
+        }
+    } catch (e) {
+        // error reading value
+    }
+};
 
 class HomeScreen extends Component {
+
     render() {
         const { fullSize, navigation } = this.props
         console.log("homescreen --- " + fullSize)
@@ -39,6 +51,7 @@ class HomeScreen extends Component {
             console.log("navigate to full")
             this.props.navigation.navigate("FullScreen");
         }
+        _retrieveData()
         return (
             <Fragment>
                 <SafeAreaView style={styles.safeAreaTop} />
