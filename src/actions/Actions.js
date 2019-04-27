@@ -1,4 +1,4 @@
-import { FETCH_IMAGES, DISPLAY_FULL_SIZE } from './ActionTypes'
+import { FETCH_IMAGES, DISPLAY_FULL_SIZE, CLEAN_FULL_SIZE } from './ActionTypes'
 
 export const fetchData = query => dispatch => {
   if ((query === '') || (query == null) || (query == undefined))
@@ -14,9 +14,16 @@ export const fetchData = query => dispatch => {
 }
 
 export const storeFullSizeURL = url => dispatch => {
-  console.log("hi")
+  console.log("storeFullSizeURL action url = " + url)
   dispatch({
     type: DISPLAY_FULL_SIZE,
     payload: url
+  })
+}
+
+export const cleanFullSizeURL = () => dispatch => {
+  dispatch({
+    type: CLEAN_FULL_SIZE,
+    payload: null
   })
 }

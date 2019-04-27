@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, Image, Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { connect } from 'react-redux'
+import { storeFullSizeURL } from '../actions/Actions'
 
 const styles = StyleSheet.create({
   item: {
@@ -10,18 +12,30 @@ const styles = StyleSheet.create({
   }
 })
 
-const ImageItem = (previewURL, largeImageURL) => {
-  setFullScreen = () => {
-    console.log("hi")
+class ImageItem extends Component {
+  constructor(props) {
+    super(props);
+    this.setFullScreen = this.setFullScreen.bind(this);
   }
-  return (
-    <TouchableOpacity onPress={this.setFullScreen}>
-      <Image
-        style={styles.item}
-        source={{ uri: `${previewURL.previewURL}` }}
-      />
-    </TouchableOpacity>
-  )
+
+  setFullScreen() {
+    console.log("setFullScreen = " + this.props.largeImageURL)
+    this.props.storeFullSizeURL(this.props.largeImageURL)
+  }
+
+  render() {
+    return (
+      <TouchableOpacity onPress={this.setFullScreen}>
+        <Image
+          style={styles.item}
+          source={{ uri: `${this.props.previewURL}` }}
+        />
+      </TouchableOpacity>
+    )
+  }
 }
 
-export default ImageItem
+export default connect(
+  null,
+  { storeFullSizeURL }
+)(ImageItem)

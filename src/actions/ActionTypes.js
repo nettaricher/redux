@@ -1,2 +1,3 @@
 export const FETCH_IMAGES = 'FETCH_IMAGES'
 export const DISPLAY_FULL_SIZE = 'DISPLAY_FULL_SIZE'
+export const CLEAN_FULL_SIZE = 'CLEAN_FULL_SIZE'

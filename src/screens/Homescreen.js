@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { StyleSheet, SafeAreaView, Text, View } from 'react-native'
 import ImagesList from '../components/imagesList'
+import { connect } from 'react-redux'
 
 const cyanColor = 'rgb(97, 149, 200)'
 const styles = StyleSheet.create({
@@ -24,9 +25,20 @@ const styles = StyleSheet.create({
     }
 })
 
-export default class Homescreen extends Component {
+const mapStateToProps = ({ images }) => {
+    return {
+        fullSize: images.fullSizeURL
+    }
+}
 
+class HomeScreen extends Component {
     render() {
+        const { fullSize, navigation } = this.props
+        console.log("homescreen --- " + fullSize)
+        if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
+            console.log("navigate to full")
+            this.props.navigation.navigate("FullScreen");
+        }
         return (
             <Fragment>
                 <SafeAreaView style={styles.safeAreaTop} />
@@ -40,3 +52,7 @@ export default class Homescreen extends Component {
         )
     }
 }
+
+export default connect(
+    mapStateToProps
+)(HomeScreen)

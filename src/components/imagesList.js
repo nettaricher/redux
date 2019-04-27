@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-//import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { StyleSheet, View, Text, Button, ScrollView, TextInput } from 'react-native'
 import { SearchBar } from 'react-native-elements';
@@ -71,15 +70,6 @@ export class ImagesList extends Component {
     )
   }
 }
-
-// TodoList.propTypes = {
-//   items: PropTypes.arrayOf(PropTypes.shape({ key: PropTypes.string, isDone: PropTypes.bool })),
-//   showAddItemInput: PropTypes.bool,
-//   userName: PropTypes.string,
-//   handleAddButtonClick: PropTypes.func,
-//   toggleItemDone: PropTypes.func,
-//   handleAddTodoSubmission: PropTypes.func
-// }
 
 export default connect(
   mapStateToProps,

@@ -3,7 +3,7 @@ import HomeScreen from "./src/screens/Homescreen";
 import FullScreen from "./src/screens/Fullscreen";
 
 const MainNavigator = createStackNavigator({
-  Home: { screen: HomeScreen },
+  HomeScreen: { screen: HomeScreen },
   FullScreen: { screen: FullScreen }
 },
   {
