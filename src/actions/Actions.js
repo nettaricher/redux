@@ -13,6 +13,21 @@ export const fetchData = query => dispatch => {
     })
 }
 
+
+export const asyncStorageToState = () => async dispatch => {
+  try {
+    const value = await AsyncStorage.getItem('favorites')
+    let obj = JSON.parse(value)
+    dispatch({
+      type: ASYNC_TO_STATE,
+      payload: obj
+    })
+  } catch (e) {
+    console.log("ERR asyncStorageToState()")
+  }
+
+}
+
 export const storeURL = (prevURL, fullURL) => dispatch => {
   console.log("storeFullSizeURL action url = " + prevURL)
   dispatch({

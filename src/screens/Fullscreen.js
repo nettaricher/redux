@@ -37,9 +37,20 @@ const FullScreen = (props) => {
         props.navigation.navigate("HomeScreen");
     }
     storeFavoriteImage = async () => {
-        // const { preview, fullSize } = this.props
         try {
-            await AsyncStorage.setItem('test', 'stored value')
+            console.log("######LIKED#######")
+            const prevState = await AsyncStorage.getItem('favorites')
+            console.log(prevState)
+            let nextState = JSON.parse(prevState)
+            nextState.push({
+                fullsize: props.fullSize,
+                preview: props.preview
+            })
+
+            await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
+            console.log("######LIKED#######")
+            this.handleReturn()
+
         } catch (e) {
             // saving error
         }

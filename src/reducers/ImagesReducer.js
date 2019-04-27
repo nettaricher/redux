@@ -23,6 +23,11 @@ export default (state = initialState, action) => {
         fullSizeURL: null,
         previewURL: null
       }
+    case ASYNC_TO_STATE:
+      return {
+        ...state,
+        favorites: action.payload
+      }
     default:
       return state
   }
