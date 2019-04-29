@@ -56,16 +56,15 @@ class FullScreen extends Component {
             else
                 nextState = JSON.parse(prevState)
             nextState.push({
-                fullsize: props.fullSize,
-                preview: props.preview
+                fullsize: this.props.fullSize,
+                preview: this.props.preview
             })
-
+            console.log(nextState)
             await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
             console.log("++++++LIKED++++++")
-            this.handleReturn()
 
         } catch (e) {
-            console.log("Fullscreen - storeFavoriteImage > " + e)
+            console.log("[Fullscreen] : storeFavoriteImage > " + e)
         }
     }
 

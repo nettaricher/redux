@@ -42,7 +42,7 @@ class HomeScreen extends Component {
     //     }
     // }
     render() {
-        //this.storeData()
+        // this.storeData()
         const { fullSize, navigation } = this.props
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
             navigation.navigate("FullScreen");
