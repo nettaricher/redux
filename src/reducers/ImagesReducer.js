@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case ASYNC_TO_STATE:
       return {
         ...state,
-        favorites: state.favorites.concat(action.payload)
+        favorites: action.payload
       }
     default:
       return state

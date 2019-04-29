@@ -44,10 +44,8 @@ class HomeScreen extends Component {
     render() {
         //this.storeData()
         const { fullSize, navigation } = this.props
-        console.log("homescreen --- " + fullSize)
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
-            console.log("navigate to full")
-            this.props.navigation.push("FullScreen");
+            navigation.navigate("FullScreen");
         }
         return (
             <Fragment>

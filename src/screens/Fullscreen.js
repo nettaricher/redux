@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { StyleSheet, View, Button, Dimensions } from 'react-native'
 import { connect } from 'react-redux'
 import { ActivityIndicator } from 'react-native';
@@ -6,6 +6,7 @@ import { Image } from 'react-native-elements';
 import { cleanFullSizeURL } from '../actions/Actions'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
+import { asyncStorageToState } from '../actions/Actions'
 
 var styles = StyleSheet.create({
     container: {
@@ -27,14 +28,24 @@ var styles = StyleSheet.create({
 const mapStateToProps = ({ images }) => {
     return {
         fullSize: images.fullSizeURL,
-        preview: images.previewURL
+        preview: images.previewURL,
     }
 }
 
-const FullScreen = (props) => {
+class FullScreen extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            imageURL: props.fullSize
+        }
+    }
+    componentDidMount() {
+        this.props.asyncStorageToState()
+    }
+
     handleReturn = () => {
-        props.cleanFullSizeURL();
-        props.navigation.navigate("HomeScreen");
+        this.props.cleanFullSizeURL();
+        this.props.navigation.navigate("HomeScreen");
     }
     storeFavoriteImage = async () => {
         try {
@@ -57,31 +68,35 @@ const FullScreen = (props) => {
             console.log("Fullscreen - storeFavoriteImage > " + e)
         }
     }
-    return (
-        <View>
+
+    render() {
+        const { imageURL } = this.state
+        return (
             <View>
-                <Image
-                    source={{ uri: `${props.fullSize}` }}
-                    style={styles.fullImage}
-                    PlaceholderContent={<ActivityIndicator />}
-                />
-            </View>
-            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
-                <TouchableOpacity onPress={this.storeFavoriteImage}>
+                <View>
                     <Image
-                        source={require('../../images/emptyLike.png')}
-                        style={styles.like}
+                        source={{ uri: `${imageURL}` }}
+                        style={styles.fullImage}
+                        PlaceholderContent={<ActivityIndicator />}
                     />
-                </TouchableOpacity>
-                <Button
-                    onPress={this.handleReturn}
-                    title="Go Back"
-                    color="#841584"
-                    accessibilityLabel="Return to home page"
-                />
-            </View>
-        </View>
-    )
+                </View>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
+                    <TouchableOpacity onPress={this.storeFavoriteImage}>
+                        <Image
+                            source={require('../../images/emptyLike.png')}
+                            style={styles.like}
+                        />
+                    </TouchableOpacity>
+                    <Button
+                        onPress={this.handleReturn}
+                        title="Go Back"
+                        color="#841584"
+                        accessibilityLabel="Return to home page"
+                    />
+                </View>
+            </View >
+        )
+    }
 }
 
-export default connect(mapStateToProps, { cleanFullSizeURL })(FullScreen)
+export default connect(mapStateToProps, { cleanFullSizeURL, asyncStorageToState })(FullScreen)
