@@ -74,7 +74,7 @@ class Favorites extends Component {
                         <Text style={styles.header}>Favorites</Text>
                         <ScrollView>
                             <View style={styles.gridView}>
-                                {favorites.map(this.eachImage)}
+                                {favorites ? favorites.map(this.eachImage) : null}
                             </View>
                         </ScrollView>
                     </View>

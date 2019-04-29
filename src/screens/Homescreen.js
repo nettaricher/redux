@@ -34,15 +34,15 @@ const mapStateToProps = ({ images }) => {
 
 
 class HomeScreen extends Component {
-    // storeData = async () => {
-    //     try {
-    //         await AsyncStorage.setItem('favorites', '')
-    //     } catch (e) {
-    //         // saving error
-    //     }
-    // }
+    storeData = async () => {
+        try {
+            await AsyncStorage.setItem('favorites', '')
+        } catch (e) {
+            // saving error
+        }
+    }
     render() {
-        // this.storeData()
+        this.storeData()
         const { fullSize, navigation } = this.props
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
             navigation.navigate("FullScreen");
