@@ -28,21 +28,26 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = ({ images }) => {
     return {
-        fullSize: images.fullSizeURL
+        fullSize: images.fullSizeURL,
+        favorites: images.favorites,
     }
 }
 
 
 class HomeScreen extends Component {
-    storeData = async () => {
+    initFavs = async () => {
         try {
-            await AsyncStorage.setItem('favorites', '')
+            //await AsyncStorage.clear()
+            const prevState = await AsyncStorage.getItem('favorites')
+            console.log(prevState)
+            if (!prevState)
+                await AsyncStorage.setItem('favorites', '[]')
         } catch (e) {
             // saving error
         }
     }
     render() {
-        this.storeData()
+        this.initFavs()
         const { fullSize, navigation } = this.props
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
             navigation.navigate("FullScreen");

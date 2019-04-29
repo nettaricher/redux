@@ -28,7 +28,7 @@ var styles = StyleSheet.create({
 const mapStateToProps = ({ images }) => {
     return {
         fullSize: images.fullSizeURL,
-        preview: images.previewURL,
+        preview: images.previewURL
     }
 }
 

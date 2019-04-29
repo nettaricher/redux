@@ -59,10 +59,8 @@ class Favorites extends Component {
         return <ImageItem key={key} previewURL={item.preview} largeImageURL={item.fullsize} />
     }
     render() {
-        console.log(this.props)
         const { fullSize, favorites } = this.props
         if (fullSize !== '' && fullSize !== undefined && fullSize !== null) {
-            console.log("navigate to full screen...")
             this.props.navigation.navigate("FullScreen");
         }
 
@@ -74,7 +72,7 @@ class Favorites extends Component {
                         <Text style={styles.header}>Favorites</Text>
                         <ScrollView>
                             <View style={styles.gridView}>
-                                {favorites ? favorites.map(this.eachImage) : null}
+                                {favorites.map(this.eachImage)}
                             </View>
                         </ScrollView>
                     </View>
