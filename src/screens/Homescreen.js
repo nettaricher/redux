@@ -13,20 +13,22 @@ const styles = StyleSheet.create({
     },
     safeAreaBottom: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: "#393e43"
     },
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: "#393e43"
     },
     allHeader: {
         flexDirection: "row",
-        backgroundColor: cyanColor,
-        justifyContent: "center"
+        backgroundColor: "#393e43",
+        justifyContent: "center",
+        color: "white"
     },
     header: {
         padding: 10,
-        fontSize: 36
+        fontSize: 36,
+        color: "white"
 
     },
     like: {
@@ -46,7 +48,7 @@ const mapStateToProps = ({ images }) => {
 class HomeScreen extends Component {
     initFavs = async () => {
         try {
-            //await AsyncStorage.clear()
+            // await AsyncStorage.clear()
             const prevState = await AsyncStorage.getItem('favorites')
             if (!prevState)
                 await AsyncStorage.setItem('favorites', '[]')

@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     tags: {
         fontSize: 17,
         paddingBottom: 10,
-        fontWeight: "bold"
+        fontWeight: "bold",
+        color: "white"
     }
 })
 
@@ -43,8 +44,8 @@ class ImageItem extends Component {
                 <View style={styles.details}>
                     <Text style={styles.tags}>{this.props.tags}</Text>
                     <View style={{ flexDirection: "row", fontSize: 10 }}>
-                        <Text style={{ marginRight: 7 }}>Views: {this.props.views}</Text>
-                        <Text>Likes: {this.props.likes}</Text>
+                        <Text style={{ marginRight: 7, color: "white" }}>Views: {this.props.views}</Text>
+                        <Text style={{ color: "white" }}>Likes: {this.props.likes}</Text>
                     </View>
                 </View>
             </View>

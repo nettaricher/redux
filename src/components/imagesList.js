@@ -123,6 +123,7 @@ export class ImagesList extends Component {
           selectedIndex={selectedIndex}
           buttons={buttons}
           textStyle={{ fontSize: 15 }}
+          selectedButtonStyle={{ backgroundColor: "#393e43" }}
         />
         <ScrollView>
           <View style={this.state.selectedIndex ? styles.list : styles.grid}>

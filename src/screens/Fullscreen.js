@@ -56,20 +56,29 @@ class FullScreen extends Component {
                 nextState = []
             else
                 nextState = JSON.parse(prevState)
-            nextState.push({
-                fullsize: this.props.fullSize,
-                preview: this.props.preview
+            let like = true
+            nextState.forEach((item) => {
+                if (item.preview === this.props.preview) {
+                    alert("Already liked this photo!")
+                    like = !like
+                }
             })
-            await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
-            console.log("++++++LIKED++++++")
-            this.setState(this.state)
+            if (like) {
+                nextState.push({
+                    fullsize: this.props.fullSize,
+                    preview: this.props.preview
+                })
+                await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
+                console.log("++++++LIKED++++++")
+                this.setState(this.state)
+                this.props.asyncStorageToState()
+            }
         } catch (e) {
             console.log("[Fullscreen] : storeFavoriteImage > " + e)
         }
     }
 
     render() {
-        this.props.asyncStorageToState()
         const { imageURL } = this.state
         const { favorites, preview } = this.props
         let Liked = false
@@ -79,7 +88,7 @@ class FullScreen extends Component {
         })
         console.log(Liked)
         return (
-            <View>
+            <View style={{ backgroundColor: "#393e43", height: "100%" }}>
                 <View>
                     <Image
                         source={{ uri: `${imageURL}` }}
