@@ -69,9 +69,11 @@ class HomeScreen extends Component {
                     <View style={styles.container}>
                         <View style={styles.allHeader}>
                             <Text style={styles.header}>iPhotos</Text>
-                            <TouchableOpacity onPress={() => { this.props.navigation.navigate("Favorites") }}>
-                                <Image source={require('../../images/emptyLike.png')} style={styles.like} />
-                            </TouchableOpacity>
+                            <View style={{ paddingLeft: 80, paddingTop: 5 }}>
+                                <TouchableOpacity onPress={() => { this.props.navigation.navigate("Favorites") }}>
+                                    <Image source={require('../../images/emptyLike.png')} style={styles.like} />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                         <ImagesList />
                     </View>

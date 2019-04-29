@@ -8,21 +8,22 @@ const cyanColor = 'rgb(97, 149, 200)'
 const styles = StyleSheet.create({
     safeAreaTop: {
         flex: 0,
-        backgroundColor: cyanColor
+        backgroundColor: "#393e43"
     },
     safeAreaBottom: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: "#393e43"
     },
     container: {
         flex: 1,
-        backgroundColor: 'white'
+        backgroundColor: "#393e43"
     },
     header: {
-        backgroundColor: cyanColor,
+        backgroundColor: "#393e43",
         padding: 10,
         fontSize: 36,
-        textAlign: 'center'
+        textAlign: 'center',
+        color: "white"
     },
     gridView: {
         flex: 1,
@@ -79,7 +80,7 @@ class Favorites extends Component {
                     <Button
                         onPress={this.switchToHome}
                         title="Go Back"
-                        color="#841584"
+                        color="#393e43"
                         accessibilityLabel="Return to home page"
                     />
                 </SafeAreaView>

@@ -106,7 +106,7 @@ class FullScreen extends Component {
                     <Button
                         onPress={this.handleReturn}
                         title="Go Back"
-                        color="#841584"
+                        color="#393e43"
                         accessibilityLabel="Return to home page"
                     />
                 </View>
