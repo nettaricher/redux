@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, View, Text, Button, ScrollView, TextInput } from 'react-native'
-import { SearchBar } from 'react-native-elements';
+import { SearchBar, ButtonGroup } from 'react-native-elements';
 import ImageItem from './imageItem'
 import ImageItemList from './imageItemList'
 import { fetchData } from '../actions/Actions'
@@ -24,19 +24,22 @@ const styles = StyleSheet.create({
     height: 44,
     borderWidth: 1
   },
-  navBar: {
-    flexDirection: "row",
-    justifyContent: "center"
-  },
+  // navBar: {
+  //   flexDirection: "row",
+  //   justifyContent: "center",
+  //   backgroundColor: "red"
+  // },
   navButton: {
-    margin: 5,
-    paddingTop: 3,
-    paddingBottom: 3,
-    paddingLeft: 13,
-    paddingRight: 13,
+    // margin: 5,
+    // paddingTop: 3,
+    paddingBottom: 10,
+    margin: 0,
+    // paddingLeft: 13,
+    // paddingRight: 13,
     fontSize: 20,
+    textAlign: "center",
     backgroundColor: "#E3E5E7",
-    justifyContent: "center"
+    // justifyContent: "center",
   },
   navButtonPressed: {
     margin: 5,
@@ -62,14 +65,14 @@ export class ImagesList extends Component {
     super(props);
     this.state = {
       search: '',
-      gridView: true
+      gridView: true,
+      selectedIndex: 0
     };
     this.eachImage = this.eachImage.bind(this);
     this.updateSearch = this.updateSearch.bind(this);
     this.submitEditing = this.submitEditing.bind(this);
-    this.switchGridView = this.switchGridView.bind(this);
-    this.switchListView = this.switchListView.bind(this);
     this.eachImageList = this.eachImageList.bind(this);
+    this.updateIndex = this.updateIndex.bind(this);
   }
 
   componentDidMount() {
@@ -94,15 +97,16 @@ export class ImagesList extends Component {
       tags={item.tags}
     />
   }
-  switchGridView() {
-    this.setState({ gridView: true })
-  }
-  switchListView() {
-    this.setState({ gridView: false })
+
+  updateIndex(selectedIndex) {
+    this.setState({ selectedIndex })
+
   }
   render() {
-    const { search } = this.state;
+    const { search, selectedIndex } = this.state;
     const { images } = this.props;
+    const buttons = ['Grid View', 'List View']
+
     return (
       <View>
         <View>
@@ -113,21 +117,16 @@ export class ImagesList extends Component {
             value={search}
           />
         </View>
-        <View style={styles.navBar}>
-          <TouchableOpacity onPress={this.switchGridView}>
-            <Text style={this.state.gridView ? styles.navButtonPressed : styles.navButton}>
-              Grid View
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.switchListView}>
-            <Text style={this.state.gridView ? styles.navButton : styles.navButtonPressed}>
-              List View
-            </Text>
-          </TouchableOpacity>
-        </View>
+
+        <ButtonGroup
+          onPress={this.updateIndex}
+          selectedIndex={selectedIndex}
+          buttons={buttons}
+          textStyle={{ fontSize: 15 }}
+        />
         <ScrollView>
-          <View style={this.state.gridView ? styles.grid : styles.list}>
-            {images.map(this.state.gridView ? this.eachImage : this.eachImageList)}
+          <View style={this.state.selectedIndex ? styles.list : styles.grid}>
+            {images.map(this.state.selectedIndex ? this.eachImageList : this.eachImage)}
           </View>
         </ScrollView>
       </View>
