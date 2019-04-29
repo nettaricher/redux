@@ -115,6 +115,10 @@ export class ImagesList extends Component {
             onChangeText={this.updateSearch}
             onSubmitEditing={this.submitEditing}
             value={search}
+            containerStyle={{
+              borderBottomColor: "transparent",
+              borderTopColor: "transparent"
+            }}
           />
         </View>
 
