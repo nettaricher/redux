@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, View, Text, Button, ScrollView, TextInput } from 'react-native'
+import { StyleSheet, View, ScrollView } from 'react-native'
 import { SearchBar, ButtonGroup } from 'react-native-elements';
 import ImageItem from './imageItem'
 import ImageItemList from './imageItemList'
 import { fetchData } from '../actions/Actions'
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
 
 const styles = StyleSheet.create({
   grid: {

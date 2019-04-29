@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import { StyleSheet, SafeAreaView, Text, View, Button } from 'react-native'
+import { StyleSheet, SafeAreaView, Text, View, Image } from 'react-native'
 import ImagesList from '../components/imagesList'
 import { connect } from 'react-redux'
 import AsyncStorage from '@react-native-community/async-storage';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const cyanColor = 'rgb(97, 149, 200)'
 const styles = StyleSheet.create({
@@ -18,11 +19,19 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white'
     },
-    header: {
+    allHeader: {
+        flexDirection: "row",
         backgroundColor: cyanColor,
+        justifyContent: "center"
+    },
+    header: {
         padding: 10,
-        fontSize: 36,
-        textAlign: 'center'
+        fontSize: 36
+
+    },
+    like: {
+        width: 60,
+        height: 60
     }
 })
 
@@ -56,11 +65,12 @@ class HomeScreen extends Component {
                 <SafeAreaView style={styles.safeAreaTop} />
                 <SafeAreaView style={styles.safeAreaBottom}>
                     <View style={styles.container}>
-                        <Text style={styles.header}>iPhotos</Text>
-                        <Button
-                            title="Favorites"
-                            onPress={() => this.props.navigation.navigate("Favorites")}
-                        />
+                        <View style={styles.allHeader}>
+                            <Text style={styles.header}>iPhotos</Text>
+                            <TouchableOpacity onPress={() => { this.props.navigation.navigate("Favorites") }}>
+                                <Image source={require('../../images/emptyLike.png')} style={styles.like} />
+                            </TouchableOpacity>
+                        </View>
                         <ImagesList />
                     </View>
                 </SafeAreaView>

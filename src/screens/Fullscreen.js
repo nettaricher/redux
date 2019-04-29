@@ -62,12 +62,14 @@ class FullScreen extends Component {
             })
             await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
             console.log("++++++LIKED++++++")
+            this.setState(this.state)
         } catch (e) {
             console.log("[Fullscreen] : storeFavoriteImage > " + e)
         }
     }
 
     render() {
+        this.props.asyncStorageToState()
         const { imageURL } = this.state
         const { favorites, preview } = this.props
         let Liked = false
