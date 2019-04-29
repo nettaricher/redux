@@ -28,7 +28,8 @@ var styles = StyleSheet.create({
 const mapStateToProps = ({ images }) => {
     return {
         fullSize: images.fullSizeURL,
-        preview: images.previewURL
+        preview: images.previewURL,
+        favorites: images.favorites
     }
 }
 
@@ -59,10 +60,8 @@ class FullScreen extends Component {
                 fullsize: this.props.fullSize,
                 preview: this.props.preview
             })
-            console.log(nextState)
             await AsyncStorage.setItem('favorites', JSON.stringify(nextState))
             console.log("++++++LIKED++++++")
-
         } catch (e) {
             console.log("[Fullscreen] : storeFavoriteImage > " + e)
         }
@@ -70,6 +69,13 @@ class FullScreen extends Component {
 
     render() {
         const { imageURL } = this.state
+        const { favorites, preview } = this.props
+        let Liked = false
+        favorites.forEach(item => {
+            if (item.preview === preview)
+                Liked = true
+        })
+        console.log(Liked)
         return (
             <View>
                 <View>
@@ -82,7 +88,7 @@ class FullScreen extends Component {
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>
                     <TouchableOpacity onPress={this.storeFavoriteImage}>
                         <Image
-                            source={require('../../images/emptyLike.png')}
+                            source={Liked ? require('../../images/fullLike.png') : require('../../images/emptyLike.png')}
                             style={styles.like}
                         />
                     </TouchableOpacity>

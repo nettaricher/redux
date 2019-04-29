@@ -39,7 +39,6 @@ class HomeScreen extends Component {
         try {
             //await AsyncStorage.clear()
             const prevState = await AsyncStorage.getItem('favorites')
-            console.log(prevState)
             if (!prevState)
                 await AsyncStorage.setItem('favorites', '[]')
         } catch (e) {
