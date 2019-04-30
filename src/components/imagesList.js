@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, View, ScrollView } from 'react-native'
+import { StyleSheet, View, ScrollView, ActivityIndicator } from 'react-native'
 import { SearchBar, ButtonGroup } from 'react-native-elements';
 import ImageItem from './imageItem'
 import ImageItemList from './imageItemList'
@@ -50,6 +50,15 @@ const styles = StyleSheet.create({
     fontSize: 20,
     backgroundColor: "pink",
     justifyContent: "center"
+  },
+  container: {
+    flex: 1,
+    justifyContent: 'center'
+  },
+  horizontal: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    padding: 10
   }
 
 })
@@ -106,7 +115,8 @@ export class ImagesList extends Component {
     const { search, selectedIndex } = this.state;
     const { images } = this.props;
     const buttons = ['Grid View', 'List View']
-
+    if (this.props.images.length === 0)
+      return <View style={[styles.container, styles.horizontal]}><ActivityIndicator size="large" color="#FFF" /></View>
     return (
       <View>
         <View>
