@@ -93,7 +93,7 @@ class FullScreen extends Component {
                     <Image
                         source={{ uri: `${imageURL}` }}
                         style={styles.fullImage}
-                        PlaceholderContent={<ActivityIndicator />}
+                        PlaceholderContent={<ActivityIndicator size="large" color="#FFF" />}
                     />
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', justifyContent: 'flex-start' }}>

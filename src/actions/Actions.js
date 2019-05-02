@@ -1,5 +1,5 @@
 import { FETCH_IMAGES, DISPLAY_FULL_SIZE, CLEAN_FULL_SIZE, ASYNC_TO_STATE } from './ActionTypes'
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage'
 
 export const fetchData = query => dispatch => {
   if ((query === '') || (query == null) || (query == undefined))
